@@ -1,7 +1,9 @@
 import { legacy_createStore as CreateStore } from 'redux';
 import { composeWithDevTools } from '@redux-devtools/extension';
-import reducers from './reducers';
+import rootReducer from './reducers';
 
-const store = CreateStore(reducers, composeWithDevTools());
-
+const store = CreateStore(rootReducer, composeWithDevTools());
+if (window.Cypress) {
+  window.store = store;
+}
 export default store;
