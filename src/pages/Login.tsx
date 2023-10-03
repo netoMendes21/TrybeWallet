@@ -36,7 +36,6 @@ function Login() {
         id="email"
         onChange={ handleGetValue }
       />
-      Usuario
 
       <label htmlFor="password">Senha</label>
       <input
@@ -47,7 +46,6 @@ function Login() {
         value={ login.password }
         onChange={ handleGetValue }
       />
-      Senha
 
       <button
         disabled={ !habilitaBotao() }
