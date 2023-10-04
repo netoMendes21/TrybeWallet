@@ -1,8 +1,9 @@
 import { AnyAction } from 'redux';
-import { WALLET } from '../actions';
+import { CARTEIRA_API, WALLET } from '../actions';
 
 const INITIAL_STATE_WALLET = {
-  currencies: [''],
+  currencies: [],
+  expenses: [],
 };
 
 const walletReducer = (state = INITIAL_STATE_WALLET, action: AnyAction) => {
@@ -10,6 +11,11 @@ const walletReducer = (state = INITIAL_STATE_WALLET, action: AnyAction) => {
     case WALLET:
       return { ...state,
         currencies: action.payload,
+      };
+    case CARTEIRA_API:
+      return { ...state,
+        expenses: [...state.expenses,
+          { id: state.expenses.length, ...action.payload }],
       };
     default:
       return state;

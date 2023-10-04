@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DataFull, DispatchThunk } from '../Type/types';
-import { dataApi } from '../redux/actions';
+import { actionCarteiraApi, dataApi } from '../redux/actions';
 
 function WalletForm() {
   const dispatch: DispatchThunk = useDispatch();
   const { currencies } = useSelector((state: DataFull) => state.wallet);
   const [inputValue, SetInputValue] = useState({
     description: '',
-    currency: '',
-    method: '',
-    tag: '',
+    currency: 'USD',
+    method: 'Cartão de crédito',
+    tag: 'Alimentação',
     value: '',
   });
 
@@ -20,7 +20,7 @@ function WalletForm() {
   };
 
   const getData = () => {
-    dispatch(action(inputValue));
+    dispatch(actionCarteiraApi(inputValue));
     SetInputValue({
       description: '',
       currency: 'USD',
@@ -32,7 +32,7 @@ function WalletForm() {
 
   useEffect(() => {
     dispatch(dataApi());
-  });
+  }, [dispatch]);
 
   return (
     <div>
@@ -41,7 +41,7 @@ function WalletForm() {
         <input
           type="number"
           name="value"
-          id="despesa"
+          id="value"
           value={ inputValue.value }
           data-testid="value-input"
           onChange={ getNameInput }
@@ -98,7 +98,7 @@ function WalletForm() {
           <option value="Saúde">Saúde</option>
         </select>
 
-        <button onClick={ getData }>Adicionar despesa</button>
+        <button type="button" onClick={ getData }>Adicionar despesa</button>
       </form>
     </div>
 
