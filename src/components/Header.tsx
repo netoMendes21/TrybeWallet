@@ -6,7 +6,7 @@ function Header() {
   const { expenses } = useSelector((state: DataFull) => state.wallet);
   const conversao = () => {
     return expenses.reduce((acc, curr) => {
-      return acc + Number(curr.value) * Number(curr.exchangeRates[curr.currencies].ask);
+      return acc + Number(curr.value) * Number(curr.exchangeRates[curr.currency].ask);
     }, 0).toFixed(2);
   };
   return (

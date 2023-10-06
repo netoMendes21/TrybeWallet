@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DataFull, DispatchThunk } from '../Type/types';
-import { actionCarteiraApi, dataApi } from '../redux/actions';
+import { actionApi, dataApi } from '../redux/actions';
 
 function WalletForm() {
   const dispatch: DispatchThunk = useDispatch();
@@ -20,7 +20,7 @@ function WalletForm() {
   };
 
   const getData = () => {
-    dispatch(actionCarteiraApi(inputValue));
+    dispatch(actionApi(inputValue));
     SetInputValue({
       description: '',
       currency: 'USD',
@@ -57,7 +57,7 @@ function WalletForm() {
           onChange={ getNameInput }
         />
 
-        <label htmlFor="dinheiro">Dinheiro</label>
+        <label htmlFor="moedas">moedas</label>
         <select
           data-testid="currency-input"
           id="dinheiro"

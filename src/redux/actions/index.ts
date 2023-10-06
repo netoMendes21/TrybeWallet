@@ -5,6 +5,7 @@ import { buscaApi, cotasApi } from '../../API/API';
 export const USER = 'USER';
 export const WALLET = 'WALLET';
 export const CARTEIRA_API = 'CARTEIRA_API';
+export const DELETE_BTN = 'DELETE_BTN';
 
 export const actionUsuario = (payload: DataUser) => ({
   type: USER,
@@ -30,10 +31,17 @@ export const dataApi = () => {
   };
 };
 
-export const actioApi = (formulario: FormType) => {
+export const actionApi = (formulario: FormType) => {
   return async (dispatch: Dispatch) => {
     const result = await buscaApi();
     const novaDespesa = { ...formulario, exchangeRates: result };
     dispatch(actionCarteiraApi(novaDespesa));
+  };
+};
+
+export const actionBtnDelete = (id: number) => {
+  return {
+    type: DELETE_BTN,
+    payload: id,
   };
 };
